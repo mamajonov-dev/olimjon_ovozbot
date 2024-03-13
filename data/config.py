@@ -1,10 +1,11 @@
-from environs import Env
+# from environs import Env
+#
+# # Теперь используем вместо библиотеки python-dotenv библиотеку environs
+# env = Env()
+# env.read_env()
 
-# Теперь используем вместо библиотеки python-dotenv библиотеку environs
-env = Env()
-env.read_env()
 
-BOT_TOKEN = env.str("BOT_TOKEN")  # Забираем значение типа str
-ADMINS = env.list("ADMINS")  # Тут у нас будет список из админов
-IP = env.str("ip")  # Тоже str, но для айпи адреса хоста
+BOT_TOKEN = "5894242634:AAGEakN8wZM1Mf6n6dr61RrcAjRaX4jj3Ls"  # Забираем значение типа str
+ADMINS = [659237008,6230606860] # Тут у нас будет список из админов
+IP = "localhost"  # Тоже str, но для айпи адреса хоста
 CHANNELS = '@my_designes'
