@@ -7,14 +7,38 @@ from states.poststates import *
 from data.config import CHANNELS
 from keyboards.default.psotbuttons import *
 from database import createposttable
+from data.config import ADMINS
 
 
-@dp.message_handler(text='📝 Post yaratish')
+@dp.message_handler(text='📝 Post yaratish', )
 async def getpost(message: Message):
-    chat_id = message.chat.id
-    await message.answer('Faqat bitta Rasm kiriting')
-    await PostState.image.set()
+    for admin in ADMINS:
+        chat_id = message.chat.id
+        if admin == chat_id:
+            await message.answer('Post nomini kiritng ', reply_markup=backbutton())
+            await PostState.name.set()
 
+
+@dp.message_handler(state=PostState.name)
+async def getname(message: Message, state: FSMContext):
+    chatid = message.chat.id
+    name = message.text
+    if message.text == '⬅️ Orqaga' or message.text == '/start':
+        await message.answer('Bosh menu', reply_markup=send_postbutton())
+        await state.finish()
+    else:
+        database = sqlite3.connect('database.sqlite')
+        cursor = database.cursor()
+
+        cursor.execute('''SELECT post_name FROM posts WHERE post_name = ?''', (name,))
+        post_name = cursor.fetchone()
+        if not post_name:
+
+            await state.update_data({'name': name})
+            await message.answer(text='Faqat bitta rasm kiriting', reply_markup=backbutton())
+            await PostState.image.set()
+        else:
+            await message.answer('Bu nom mavjud. Boshqa nom yozing')
 
 @dp.message_handler(content_types=['photo'], state=PostState.image)
 async def getimage(message: Message, state: FSMContext):
@@ -22,6 +46,7 @@ async def getimage(message: Message, state: FSMContext):
     await message.answer('Post textini kiritng', reply_markup=backbutton())
     await state.update_data({'image': image.file_id})
     await PostState.text.set()
+
 
 @dp.message_handler(state=PostState.text)
 async def gettext(message: Message, state: FSMContext):
@@ -66,27 +91,36 @@ async def getcofirm(message: Message, state: FSMContext):
     messageid = f't{messageid}'
     if text == '✅ Ha':
         data = await state.get_data()
+        name = data['name']
+        database = sqlite3.connect('database.sqlite')
+        cursor = database.cursor()
+
+        cursor.execute(f'''INSERT INTO posts (post_name)
+                            VALUES (?)''', (name,))
+        database.commit()
+        database.close()
+
         post = data['post']
         image = data['image']
         buttons = data['buttons']
-        createposttable(messageid)
+        createposttable(name)
         database = sqlite3.connect('database.sqlite')
         cursor = database.cursor()
         for button in buttons:
-            cursor.execute(f'''INSERT INTO {messageid} (button_name)
+            cursor.execute(f'''INSERT INTO {name} (button_name)
                     VALUES (?)
                     ''', (button,))
             database.commit()
         database.close()
         database = sqlite3.connect('database.sqlite')
         cursor = database.cursor()
-        cursor.execute(f'''SELECT button_name, button_number FROM {messageid}
+        cursor.execute(f'''SELECT button_name, button_number FROM {name}
         ''')
         butoon_data = cursor.fetchall()
-        btn = regionsbutton(butoon_data, messageid)
-
+        print(butoon_data)
+        btn = gotobotbutton(butoon_data, name)
+        # btn = regionsbutton(butoon_data, messageid)
         posttext = f'{post}'
-
         await bot.send_photo(chat_id=CHANNELS, photo=image, caption=posttext, reply_markup=btn)
         await message.answer('Post jo\'natildi', reply_markup=send_postbutton())
         await state.finish()

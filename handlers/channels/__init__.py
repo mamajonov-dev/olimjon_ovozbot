@@ -1,1 +1,1 @@
-from . import post
+from . import postchannel

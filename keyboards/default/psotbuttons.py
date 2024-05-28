@@ -20,6 +20,9 @@ def send_postbutton():
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
     markup.add(
         KeyboardButton(text='📝 Post yaratish'),
-        KeyboardButton(text='Savolnoma yaratish')
+        KeyboardButton(text='Savolnoma yaratish'),
+        KeyboardButton(text='🚫 So\'rovnomani to\'xtatish'),
     )
     return markup
+
+
