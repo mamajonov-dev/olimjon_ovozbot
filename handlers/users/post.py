@@ -65,11 +65,12 @@ async def getcaptchastate(message: Message, state: FSMContext):
     else:
         data = await state.get_data()
         value = data['value']
-        if value == message.text:
+        contact = data['contact']
+        if contact and value and value == message.text:
             userid = message.from_user.id
             table_name = data['table_name']
             button_name = data['button_name']
-            contact = data['contact']
+
             channel = CHANNELS
             status = await check(user_id=message.from_user.id, channel=channel)
             channel = await bot.get_chat(channel)
