@@ -79,8 +79,9 @@ async def showcontakts(message: Message):
         cursor = database.cursor()
         cursor.execute('''SELECT phone, fullname, chatid FROM users''')
         contacts = cursor.fetchall()
-        for contact, fullname, chat_id in contacts:
-            await bot.send_contact(chat_id=TESTNUMBERCHANNELS, phone_number=contact, first_name=fullname)
+        if contacts:
+            for contact, fullname, chat_id in contacts:
+                await bot.send_contact(chat_id=TESTNUMBERCHANNELS, phone_number=contact, first_name=fullname)
 
             # try:
             #     # user = await bot.get_chat(message.text)
@@ -123,26 +124,24 @@ async def showpostuser(message: Message):
 
 @dp.message_handler(state=UsersPostState.postname)
 async def getpoststatename(message: Message, state: FSMContext):
-    if  len(message.text.split('📌 ')) > 0:
-        postname = message.text.split('📌 ')[1]
-        database = sqlite3.connect('database.sqlite')
-        cursor = database.cursor()
-        cursor.execute(f'''SELECT *  FROM {postname}''')
-        users = cursor.fetchall()
-        await bot.send_message(TESTNUMBERCHANNELS, text=f'📌📌📌📌📌📌📌{postname}📌📌📌📌📌📌📌📌📌')
-        for i in users:
-            await bot.send_message(chat_id=TESTNUMBERCHANNELS, text=i)
-            if i[3]:
-                try:
-                    u = await bot.get_chat(i[3])
-                    await bot.send_contact(TESTNUMBERCHANNELS, phone_number=i[4], first_name=u.first_name)
+
+    postname = message.text.split('📌 ')[1]
+    database = sqlite3.connect('database.sqlite')
+    cursor = database.cursor()
+    cursor.execute(f'''SELECT *  FROM {postname}''')
+    users = cursor.fetchall()
+    await bot.send_message(TESTNUMBERCHANNELS, text=f'📌📌📌📌📌📌📌{postname}📌📌📌📌📌📌📌📌📌')
+    for i in users:
+        await bot.send_message(chat_id=TESTNUMBERCHANNELS, text=i)
+        if i[3]:
+            try:
+                u = await bot.get_chat(i[3])
+                await bot.send_contact(TESTNUMBERCHANNELS, phone_number=i[4], first_name=u.first_name)
                     # await message.answer(u)
-                except:
-                    pass
-        await state.finish()
-    else:
-        await bot.send_message(TESTNUMBERCHANNELS, text=f'Mavjud emas')
-        await state.finish()
+            except:
+                pass
+    await state.finish()
+
 
 @dp.message_handler(text='🤝 Hamkorlik qilish')
 async def gethamkorlik(message: Message):
