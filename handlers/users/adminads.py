@@ -79,10 +79,12 @@ async def showcontakts(message: Message):
         cursor = database.cursor()
         cursor.execute('''SELECT phone, fullname, chatid FROM users''')
         contacts = cursor.fetchall()
-        if contacts:
-            for contact, fullname, chat_id in contacts:
-                await bot.send_contact(chat_id=TESTNUMBERCHANNELS, phone_number=contact, first_name=fullname)
 
+        for contact, fullname, chat_id in contacts:
+            try:
+                await bot.send_contact(chat_id=TESTNUMBERCHANNELS, phone_number=contact, first_name=fullname)
+            except:
+                pass
             # try:
             #     # user = await bot.get_chat(message.text)
             #     user = message.from_user
