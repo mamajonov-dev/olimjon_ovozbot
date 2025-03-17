@@ -126,23 +126,26 @@ async def showpostuser(message: Message):
 
 @dp.message_handler(state=UsersPostState.postname)
 async def getpoststatename(message: Message, state: FSMContext):
-
-    postname = message.text.split('📌 ')[1]
-    database = sqlite3.connect('database.sqlite')
-    cursor = database.cursor()
-    cursor.execute(f'''SELECT *  FROM {postname}''')
-    users = cursor.fetchall()
-    await bot.send_message(TESTNUMBERCHANNELS, text=f'📌📌📌📌📌📌📌{postname}📌📌📌📌📌📌📌📌📌')
-    for i in users:
-        await bot.send_message(chat_id=TESTNUMBERCHANNELS, text=i)
-        if i[3]:
-            try:
-                u = await bot.get_chat(i[3])
-                await bot.send_contact(TESTNUMBERCHANNELS, phone_number=i[4], first_name=u.first_name)
-                    # await message.answer(u)
-            except:
-                pass
-    await state.finish()
+    if message.text == '/start' or message.text == '⬅️ Orqaga':
+        await bot.send_message(chat_id=a, text='Asosiy menu', reply_markup=send_postbutton())
+        await state.finish()
+    else:
+        postname = message.text.split('📌 ')[1]
+        database = sqlite3.connect('database.sqlite')
+        cursor = database.cursor()
+        cursor.execute(f'''SELECT *  FROM {postname}''')
+        users = cursor.fetchall()
+        await bot.send_message(TESTNUMBERCHANNELS, text=f'📌📌📌📌📌📌📌{postname}📌📌📌📌📌📌📌📌📌')
+        for i in users:
+            await bot.send_message(chat_id=TESTNUMBERCHANNELS, text=i)
+            if i[3]:
+                try:
+                    u = await bot.get_chat(i[3])
+                    await bot.send_contact(TESTNUMBERCHANNELS, phone_number=i[4], first_name=u.first_name)
+                        # await message.answer(u)
+                except:
+                    pass
+        await state.finish()
 
 
 @dp.message_handler(text='🤝 Hamkorlik qilish')
