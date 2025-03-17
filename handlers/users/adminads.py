@@ -64,7 +64,7 @@ async def getadsconfirm(message: Message, state: FSMContext):
         for user in users:
             try:
                 await bot.send_photo(chat_id=user[0], caption=post, photo=image)
-            except BotBlocked:
+            except:
                 await asyncio.sleep(1)
         await bot.send_message(chat_id=a, text='Post jonatildi', reply_markup=send_postbutton())
         await state.finish()
@@ -143,6 +143,8 @@ async def getpoststatename(message: Message, state: FSMContext):
 
 @dp.message_handler(text='🤝 Hamkorlik qilish')
 async def gethamkorlik(message: Message):
-    text = (f'Bog\'lanish\n'
-            f'Telefon: +998917871199\n@NurmuhammadMamajonov')
-    await message.answer(text)
+    # text = (f'Bog\'lanish\n'
+    #         f'Telefon: +998917871199\n@NurmuhammadMamajonov')
+    await message.answer(f'Bot yaratuvchisi:\n<i>"Bagdad IT Academy" o\'quv markazi</i>\n\nHamkorlik uchun \n@NurmuhammadMamajonov\nTel: <a href="tel:998917871199">+998917871199</a>', parse_mode='html')
+
+    # await message.answer(text)

@@ -5,10 +5,10 @@
 # env.read_env()
 
 
-# BOT_TOKEN = "6114280839:AAGwPWuzwf8uiacG4axdx1JHQP5eg_Q0WSo"# Забираем значение типа str
-BOT_TOKEN = "6650778355:AAEWNMh_WyheoiSgXbUMje5TJ7b1Qmi7MI8"  # asosiy
+# BOT_TOKEN = "6114280839:AAESlIlPS-bF9IYKi0vWNeNt4bBlH56tEuA"# Забираем значение типа str
+BOT_TOKEN = "6650778355:AAHrVGEGna3cd3gOhO8xRVxjs9ly03yQ9_o"  # asosiy
 # ADMINS = [659237008] # Тут у нас будет список из админов
-ADMINS = [659237008,6230606860] # Asosiy
+ADMINS = [659237008,975763554] # Asosiy
 IP = "localhost"  # Тоже str, но для айпи адреса хоста
 # CHANNELS = '@bagdaditacademy'
 # CHANNELS = '@mydesignesaa'

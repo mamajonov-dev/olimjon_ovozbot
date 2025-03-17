@@ -26,13 +26,13 @@ async def gettelefon(message: Message, state: FSMContext):
         else:
             text = message.text.split()
             if len(message.text.split()) > 1:
-                await message.answer(text='Telefon nomeringizni yuboring', reply_markup=telefonbutton())
+                await message.answer(text='Telefon nomeringizni yuboring. Pastdagi <b>"Telefon raqam jo\'natish"</b> tugmasini bosing!\n                                                                      ⬇️', reply_markup=telefonbutton())
                 data = message.text.split('/start')[1].strip()
                 button, table = data.split('_')
                 await state.update_data({'table_name': table, 'button_name': button})
                 await OvozberishState.telefon.set()
             elif len(message.text.split()) == 1:
-                await message.answer('Bosh menu')
+                await message.answer('Bosh menu. Telefon raqami kiritishda xatolik! \nQayta urinib ko\'ring', reply_markup=userasosiymenubutton())
                 await state.finish()
     else:
 
@@ -120,8 +120,8 @@ async def getcaptchastate(message: Message, state: FSMContext):
                     # await message.edit_reply_markup(reply_markup=btn)
                     database.commit()
                     database.close()
-                    await message.answer('Ovoz berildi ✅✅✅✅. Ovoz berganingiz uchun raxmat!', reply_markup=userasosiymenubutton())
-                    await message.answer(f'Bot yaratuvchisi:\n<i>"Bagdad IT Academy" o\'quv markazi</i>\n\nHamkorlik uchun \n@NurmuhammadMamajonov\nTel: <a href="tel:998917871199">+998917871199</a>', parse_mode='html')
+                    await message.answer('✅ <b>OVOZINGIZ QABUL QILINDI\nIshtirokingiz uchun tashakkur!</b>', reply_markup=userasosiymenubutton())
+                    # await message.answer(f'Bot yaratuvchisi:\n<i>"Bagdad IT Academy" o\'quv markazi</i>\n\nHamkorlik uchun \n@NurmuhammadMamajonov\nTel: <a href="tel:998917871199">+998917871199</a>', parse_mode='html')
                 else:
                     database.close()
                     await message.answer('Bu so\'rovnomaga  ovoz bergansiz!‼️', reply_markup=userasosiymenubutton())

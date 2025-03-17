@@ -15,7 +15,6 @@ from database import getcaptcha
 
 @dp.callback_query_handler(lambda call: 'region' in call.data)
 async def getregion(call: CallbackQuery):
-
     try:
         userid = call.from_user.id
         _, tname = call.data.split('_')

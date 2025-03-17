@@ -20,8 +20,6 @@ async def bot_start(message: types.Message, state: FSMContext):
             reply_markup=userasosiymenubutton())
         await state.finish()
     else:
-
-
         fullname = message.from_user.full_name
         chatid = message.chat.id
         username  = message.from_user.username
@@ -44,7 +42,7 @@ async def bot_start(message: types.Message, state: FSMContext):
                     cursor.execute(f'''SELECT user_id FROM {table} WHERE user_id = ?''', (chatid, ))
                     user = cursor.fetchone()
                     if not user:
-                        await message.answer(text='Telefon nomeringizni yuboring', reply_markup=telefonbutton())
+                        await message.answer(text='Telefon nomeringizni yuboring. Pastdagi <b>"Telefon raqam jo\'natish"</b> tugmasini bosing!\n                                                                      ⬇️', reply_markup=telefonbutton())
                         await state.update_data({'table_name': table, 'button_name': button})
                         await OvozberishState.telefon.set()
                     else:
@@ -55,7 +53,11 @@ async def bot_start(message: types.Message, state: FSMContext):
                     await message.answer('Commands: \n/ads - reklama tarqatish\n/contacts - nomerlar\n/users - foydalanuvchilar\n/user_post - ovoz berganlar.')
                 if int(message.chat.id) in ADMINS:
                     await message.answer(f"Привет, {message.from_user.full_name}!", reply_markup=send_postbutton())
+                elif int(message.chat.id) == 975763554:
+                    await message.answer(
+                        f'Xush kelibsiz {message.from_user.full_name}. So\'rovnomaga ovoz berish uchun kanal orqali kiring\n⬇️⬇️⬇️⬇️⬇️⬇️⬇️\n\n{CHANNELS}')
                 else:
+
                     await message.answer(f'Xush kelibsiz {message.from_user.full_name}. So\'rovnomaga ovoz berish uchun kanal orqali kiring\n⬇️⬇️⬇️⬇️⬇️⬇️⬇️\n\n{CHANNELS}', reply_markup=userasosiymenubutton())
         else:
             pass
