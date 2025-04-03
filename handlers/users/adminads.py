@@ -15,7 +15,6 @@ from aiogram.utils.exceptions import BotBlocked
 
 a = 659237008
 
-
 @dp.message_handler(commands='ads')
 async def getads(message: Message):
     if message.chat.id == 659237008:
@@ -152,6 +151,6 @@ async def getpoststatename(message: Message, state: FSMContext):
 async def gethamkorlik(message: Message):
     # text = (f'Bog\'lanish\n'
     #         f'Telefon: +998917871199\n@NurmuhammadMamajonov')
-    await message.answer(f'Bot yaratuvchisi:\n<i>"Bagdad IT Academy" o\'quv markazi</i>\n\nHamkorlik uchun \n@NurmuhammadMamajonov\nTel: <a href="tel:998917871199">+998917871199</a>', parse_mode='html')
+    await message.answer(f'Hamkorlik uchun \nBot yaratuvchisi:\n <a href="t.me/nurmuhammadmamajonov"><i>"Bagdad IT Academy"</a> o\'quv markazi</i> ', parse_mode='html')
 
     # await message.answer(text)
