@@ -151,6 +151,6 @@ async def getpoststatename(message: Message, state: FSMContext):
 async def gethamkorlik(message: Message):
     # text = (f'Bog\'lanish\n'
     #         f'Telefon: +998917871199\n@NurmuhammadMamajonov')
-    await message.answer(f'Hamkorlik uchun \nBot yaratuvchisi:\n <a href="t.me/nurmuhammadmamajonov"><i>"Bagdad IT Academy"</a> o\'quv markazi</i> ', parse_mode='html')
+    await message.answer(f'Hamkorlik uchun \nBot yaratuvchisi:\n <a href="t.me/nurmuhammadmamajonov"><i>"Bagdad IT Academy" o\'quv markazi</i> </a> ', parse_mode='html')
 
     # await message.answer(text)
