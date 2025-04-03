@@ -24,7 +24,7 @@ async def bot_start(message: types.Message, state: FSMContext):
         
 
         await message.answer(
-            text=f'Kanalga obuna bo\'lmagansiz. Ovoz berish uchun kanlaga a\'zo bo\'ling\n\', reply_markup=markup1)
+            text=f'Kanalga obuna bo\'lmagansiz. Ovoz berish uchun kanlaga a\'zo bo\'ling', reply_markup=markup1)
         await state.finish()
     else:
         fullname = message.from_user.full_name
@@ -67,6 +67,6 @@ async def bot_start(message: types.Message, state: FSMContext):
                     markup = InlineKeyboardMarkup()
                     markup.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/bagdodim_news'))
 
-                    await message.answer(f'Xush kelibsiz {message.from_user.full_name}. So\'rovnomaga ovoz berish uchun kanal orqali kiring\n⬇️⬇️⬇️⬇️⬇️⬇️⬇️\n\n', reply_markup=markup)
+                    await message.answer(f'Xush kelibsiz {message.from_user.full_name}. So\'rovnomaga ovoz berish uchun kanal orqali kiring\n⬇️⬇️⬇️⬇️⬇️⬇️⬇️', reply_markup=markup)
         else:
             pass
