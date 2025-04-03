@@ -121,7 +121,7 @@ async def getcaptchastate(message: Message, state: FSMContext):
                     database.commit()
                     database.close()
                     await message.answer('✅ <b>OVOZINGIZ QABUL QILINDI\nIshtirokingiz uchun tashakkur!</b>', reply_markup=userasosiymenubutton())
-                    # await message.answer(f'Bot yaratuvchisi:\n<i>"Bagdad IT Academy" o\'quv markazi</i>\n\nHamkorlik uchun \n@NurmuhammadMamajonov\nTel: <a href="tel:998917871199">+998917871199</a>', parse_mode='html')
+                    await message.answer(f'Hamkorlik uchun\nBot yaratuvchisi:\n<a href="t.me/nurmuhammadmamajonov"><i>"Bagdad IT Academy" o\'quv markazi</i> </a>', parse_mode='html')
                 else:
                     database.close()
                     await message.answer('Bu so\'rovnomaga  ovoz bergansiz!‼️', reply_markup=userasosiymenubutton())
