@@ -58,6 +58,12 @@ async def gettelefon(message: Message, state: FSMContext):
 @dp.message_handler(state=OvozberishState.captcha)
 async def getcaptchastate(message: Message, state: FSMContext):
     chatid = message.chat.id
+    markup1 = InlineKeyboardMarkup()
+    markup1.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/bagdodim_news'))
+    markup1.add(InlineKeyboardButton(text="Bag'dod hayoti", url=f'https://t.me/BAGDODHAYOTI'))
+
+    markup = InlineKeyboardMarkup()
+    markup.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/bagdodim_news'))
 
     if message.text == '⬅️ Orqaga' or message.text == '/start':
         await message.answer('Bosh menu', reply_markup=userasosiymenubutton())
@@ -127,10 +133,10 @@ async def getcaptchastate(message: Message, state: FSMContext):
                     await message.answer('Bu so\'rovnomaga  ovoz bergansiz!‼️', reply_markup=userasosiymenubutton())
             else:
                 await message.answer(
-                    text=f'Kanalga obuna bo\'lmagansiz. Ovoz berish uchun kanlaga a\'zo bo\'ling\n\n⬇️⬇️⬇️⬇️⬇️⬇️⬇️\n\n{CHANNELS}', reply_markup=userasosiymenubutton())
+                    text=f'Kanalga obuna bo\'lmagansiz. Ovoz berish uchun kanlaga a\'zo bo\'ling\n\n⬇️⬇️⬇️⬇️⬇️⬇️⬇️', reply_markup=markup1)
                 await state.finish()
         else:
-            await message.answer('Captcha noto\'g\'ri. Boshqattan urinib ko\'ring', reply_markup=userasosiymenubutton())
+            await message.answer('Captcha noto\'g\'ri. Boshqattan urinib ko\'ring', reply_markup=markup)
             await state.finish()
         await state.finish()
 
