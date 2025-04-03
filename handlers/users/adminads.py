@@ -147,7 +147,7 @@ async def getpoststatename(message: Message, state: FSMContext):
         await state.finish()
 
 
-@dp.message_handler(lambda ms: "hamkorlik qilish" in ms.text)
+@dp.message_handler(lambda ms: "hamkorlik" in ms.text)
 async def gethamkorlik(message: Message):
     # text = (f'Bog\'lanish\n'
     #         f'Telefon: +998917871199\n@NurmuhammadMamajonov')
