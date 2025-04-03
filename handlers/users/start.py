@@ -16,8 +16,8 @@ from utils.misc.subscription import *
 async def bot_start(message: types.Message, state: FSMContext):
     status = await check(user_id=message.from_user.id, channel=CHANNELS)
     markup1 = InlineKeyboardMarkup()
-    markup.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/bagdodim_news'))
-    markup.add(InlineKeyboardButton(text="Bag'dod hayoti", url=f'https://t.me/BAGDODHAYOTI'))
+    markup1.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/bagdodim_news'))
+    markup1.add(InlineKeyboardButton(text="Bag'dod hayoti", url=f'https://t.me/BAGDODHAYOTI'))
 
     markup = InlineKeyboardMarkup()
     markup.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/bagdodim_news'))
