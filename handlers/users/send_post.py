@@ -94,8 +94,6 @@ async def getcofirm(message: Message, state: FSMContext):
         name = data['name']
 
         createposttable(name)
-        database = sqlite3.connect('database.sqlite')
-        cursor = database.cursor()
         
         database = sqlite3.connect('database.sqlite')
         cursor = database.cursor()
@@ -109,8 +107,8 @@ async def getcofirm(message: Message, state: FSMContext):
         image = data['image']
         buttons = data['buttons']
         # createposttable(name)
-        # database = sqlite3.connect('database.sqlite')
-        # cursor = database.cursor()
+        database = sqlite3.connect('database.sqlite')
+        cursor = database.cursor()
         for button in buttons:
             cursor.execute(f'''INSERT INTO {name} (button_name)
                     VALUES (?)
