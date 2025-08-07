@@ -5,7 +5,7 @@
 # env.read_env()
 
 
-BOT_TOKEN = "6279378107:AAHE5LuybVlzWnx-VJanABIvqyM-HYTAr5s"# Забираем значение типа str
+BOT_TOKEN = "6114280839:AAH70aKIbRVqrsw6i-Pt7HiIu0w-b5lQSr4"# Забираем значение типа str
 # BOT_TOKEN = "6650778355:AAHrVGEGna3cd3gOhO8xRVxjs9ly03yQ9_o"  # asosiy
 ADMINS = [659237008] # Тут у нас будет список из админов
 # ADMINS = [659237008,130167473] # Asosiy
