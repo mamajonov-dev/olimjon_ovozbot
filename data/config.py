@@ -14,6 +14,6 @@ IP = "localhost"  # Тоже str, но для айпи адреса хоста
 # CHANNELS = '@bagdaditacademy'
 # CHANNELS = '@mydesignesaa'
 # CHANNELS = '@@bagdodimnewsbot'   # olimjon ovozbot
-CHANNELS = '@@bagdodimnewsbot'   #asosiy
+CHANNELS = '@bagdodim_news'   #asosiy
 NUMBERCHANNELS = '@bagdadgetnumbers'
 TESTNUMBERCHANNELS = '@mydesignesaa'
