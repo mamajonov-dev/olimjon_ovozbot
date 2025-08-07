@@ -17,7 +17,7 @@ def regionsbutton(buttons: list, tname):
 def gotobotbutton(buttons: list, tname):
     markup = InlineKeyboardMarkup()
     for button, number in buttons:
-        markup.add(InlineKeyboardButton(text=f'{button} {number}', url=f'https://t.me/olimjon_ovoz_bot?start={button}_{tname}'))
+        markup.add(InlineKeyboardButton(text=f'{button} {number}', url=f'https://t.me/itcenterbagdodbot?start={button}_{tname}'))
     markup.add(
         InlineKeyboardButton(text='Yangilash',callback_data=f'region_{tname}' )
     )
