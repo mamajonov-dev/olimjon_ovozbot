@@ -20,7 +20,7 @@ async def bot_start(message: types.Message, state: FSMContext):
     markup1.add(InlineKeyboardButton(text="Bag'dod hayoti", url=f'https://t.me/BAGDODHAYOTI'))
 
     markup = InlineKeyboardMarkup()
-    markup.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/bagdodim_news'))
+    markup.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/BAGDODHAYOTI'))
     if not status:
         
 
