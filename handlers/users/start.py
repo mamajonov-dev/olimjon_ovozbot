@@ -66,7 +66,7 @@ async def bot_start(message: types.Message, state: FSMContext):
                         f'Xush kelibsiz {message.from_user.full_name}. So\'rovnomaga ovoz berish uchun kanal orqali kiring\n⬇️⬇️⬇️⬇️⬇️⬇️⬇️\n\n', reply_markup=markup)
                 else:
                     markup = InlineKeyboardMarkup()
-                    markup.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/bagdodim_news'))
+                    markup.add(InlineKeyboardButton(text="Bag'dodim news", url=f'https://t.me/BAGDODHAYOTI'))
 
                     await message.answer(f'Xush kelibsiz {message.from_user.full_name}. So\'rovnomaga ovoz berish uchun kanal orqali kiring\n⬇️⬇️⬇️⬇️⬇️⬇️⬇️', reply_markup=markup)
         else:
